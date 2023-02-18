@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views import View
+from .helpers import GetBody
+
 # Create your views here.
 
 class FirstView(View):
@@ -26,3 +28,8 @@ class SecondView(View):
     def delete(self, request, param):
         query = request.GET.get("query", "no query")
         return JsonResponse({"param":param, "query": query})
+
+class ThirdView(View):
+    def post(self, request):
+        return JsonResponse(GetBody(request))
+    
